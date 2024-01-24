@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students Overview</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1>Students</h1>
+        <br>
+        <a class="btn btn-primary" th:href="@{/add}">Add</a>
+        <hr>
+        <table class="table table-stripped">
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Birthdate</th>
+                <th>Sex</th>
+                <th>Height</th>
+                <th>Schoolclass</th>
+                <th>Actions</th>
+            </tr>
+            <tr th:each="stud : ${students}">
+                <td th:text="${stud.firstname}"></td>
+                <td th:text="${stud.lastname}"></td>
+                <td th:text="${#dates.format(stud.dateofbirth,'dd-MM-YYYY')}"></td>
+                <td th:text="${stud.sex}"></td>
+                <td th:text="${#numbers.formatDecimal(stud.height,1,2)}"></td>
+                <td th:text="${stud.schoolclassesBySchoolclassId.name}"></td>
+                <td><a th:href="@{/delete(id=${stud.id})}" class="btn btn-danger">Delete</a><a th:href="@{/edit(id=${stud.id})}" class="btn btn-secondary">Edit</a></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

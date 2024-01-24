@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Config</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <form th:object="${student}" th:action="@{/save}" th:method="post">
+      <label>Firstname</label>
+      <br>
+      <input th:field="*{firstname}" class="from-control"/>
+      <br>
+      <label>Lastname</label>
+      <br>
+      <input th:field="*{lastname}" class="from-control"/>
+      <br>
+      <label>Sex</label>
+      <br>
+      <input th:field="*{sex}" class="from-control"/>
+      <br>
+      <label>Birthdate</label>
+      <br>
+      <input th:field="*{dateofbirth}" type="date" class="from-control"/>
+      <br>
+      <label>Height</label>
+      <br>
+      <input th:field="*{height}" type="number" step="0.01" class="from-control"/>
+      <br>
+      <input th:field="*{schoolclassesBySchoolclassId.id}" type="hidden"/>
+      <input th:field="*{id}" type="hidden">
+      <input type="submit" title="Save"/>
+    </form>
+  </div>
+</body>
+</html>
